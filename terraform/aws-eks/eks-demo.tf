@@ -8,7 +8,7 @@ resource "aws_iam_role" "eks-demo" {
       {
         "Effect": "Allow",
         "Princpal": {
-           "Service": "eks.amazonaws.com
+           "Service": "eks.amazonaws.com"
         },
         "Action": "sts.AssumeRole"
       }
