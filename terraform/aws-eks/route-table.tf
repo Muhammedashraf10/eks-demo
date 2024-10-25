@@ -5,7 +5,7 @@ resource "aws_route_table" "private" {
     {
         cidr_block = "0.0.0.0/0"
         nat_gateway_id = aws_nat_gateway.eks-demo-nat-gateway.id
-        gateway_id = ""
+        nat_gateway_id = ""
         carrier_gateway_id = ""
         destination_prefix_list_id = ""
         egress_only_gateway_id = ""
@@ -16,7 +16,7 @@ resource "aws_route_table" "private" {
         transit_gateway_id = ""
         vpc_endpoint_id = ""
         vpc_peering_connection_id = ""
-        core_network_arn = ""
+    
     }
    ]
 
@@ -44,7 +44,6 @@ resource "aws_route_table" "public" {
         transit_gateway_id = ""
         vpc_endpoint_id = ""
         vpc_peering_connection_id = ""
-        core_network_arn = ""
     }
    ]
 
@@ -59,16 +58,16 @@ resource "aws_route_table_association" "private-us-esat-1a" {
 }
 
 resource "aws_route_table_association" "private-us-esat-1b" {
-  subnet_id = aws_subnet.eks-pv-subnet-1a
+  subnet_id = aws_subnet.eks-pv-subnet-1a.id
   route_table_id = aws_route_table.private.id
 }
 
 resource "aws_route_table_association" "public-us-esat-1a" {
-  subnet_id = aws_subnet.eks-public-subnet-1a
+  subnet_id = aws_subnet.eks-public-subnet-1a.id
   route_table_id = aws_route_table.public
 }
 
-resource "aws_route_table_association" "public-us-esat-1b" {
-  subnet_id = aws_subnet.eks-public-subnet-1b
+resource "aws_route_table_association" "private-us-esat-1b" {
+  subnet_id = aws_subnet.eks-public-subnet-1b.id
   route_table_id = aws_route_table.public.id
 }
