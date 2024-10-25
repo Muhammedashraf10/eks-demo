@@ -18,7 +18,7 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "eks-AWSEKSWorkerNodePolicy" {
-  policy_arn = "arn:aws:iam:aws:policy/AmazonEKSClusterPolicy"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role = aws_iam_role.eks-demo.name
 }
 
@@ -34,5 +34,5 @@ resource "aws_eks_cluster" "eks-demo" {
     aws_subnet.eks-pv-subnet-1b
    ]
  }
-  depends_on = [ aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy ]
+  depends_on = [ aws_iam_role_policy_attachment.eks-AWSEKSWorkerNodePolicy ]
 }
