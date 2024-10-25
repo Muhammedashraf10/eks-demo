@@ -46,7 +46,7 @@ resource "aws_route_table_association" "public-us-esat-1a" {
   route_table_id = aws_route_table.public
 }
 
-resource "aws_route_table_association" "private-us-esat-1b" {
+resource "aws_route_table_association" "public-us-esat-1b" {
   subnet_id = aws_subnet.eks-public-subnet-1b
   route_table_id = aws_route_table.public.id
 }
