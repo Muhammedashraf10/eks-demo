@@ -22,9 +22,10 @@ resource "aws_iam_role_policy_attachment" "eks-AWSEKSWorkerNodePolicy" {
   role = aws_iam_role.eks-demo.name
 }
 
+
 resource "aws_eks_cluster" "eks-demo" {
  name = "demo-cluster"
- role_arn = aws_iam_role.eks-demo
+ role_arn = "aws_iam_role.eks-demo"
 
  vpc_config {
    subnet_ids = [
