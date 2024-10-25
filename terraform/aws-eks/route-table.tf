@@ -54,7 +54,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table_association" "private-us-esat-1a" {
-  subnet_id = aws_subnet.eks-pv-subnet-1a
+  subnet_id = aws_subnet.eks-pv-subnet-1a.id
   route_table_id = aws_route_table.private.id
 }
 
@@ -65,7 +65,7 @@ resource "aws_route_table_association" "private-us-esat-1b" {
 
 resource "aws_route_table_association" "public-us-esat-1a" {
   subnet_id = aws_subnet.eks-public-subnet-1a.id
-  route_table_id = aws_route_table.public
+  route_table_id = aws_route_table.public.id
 }
 
 resource "aws_route_table_association" "public-us-esat-1b" {
