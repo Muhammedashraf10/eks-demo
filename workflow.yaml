@@ -23,7 +23,7 @@ phases:
       - cd flask-app
       - echo Build started on `date`
       - echo Building the Docker image...
-	    - sudo docker build -t my-app .
-	    - echo Pushing the image 
-	    - docker tag my_flask_app:latest $REPOSITORY_URI:latest
-	    - docker push $REPOSITORY_URI:latest
+      - sudo docker build -t my-app .
+      - echo Pushing the image 
+      - docker tag my_flask_app:latest $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:latest
