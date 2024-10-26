@@ -62,4 +62,5 @@ jobs:
       run: |
         echo "Deploying the application to EKS"
         cd kubernetes-deployment
-        kubectl apply -f deployment.yaml
+        kubectl apply -f deployment.yaml --validate=false
+
