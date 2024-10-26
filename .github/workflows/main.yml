@@ -41,10 +41,10 @@ jobs:
           git clone https://github.com/Muhammedashraf10/pwc-demo.git
           cd flask-app
           echo Build started on `date`
-          echo Building the Docker image...
+          echo "Building the Docker image..."
           sudo docker build -t my-flask-app .
-          echo Pushing the image 
-          docker tag my_flask_app:latest $REPOSITORY_URI:latest
+          echo "Pushing the image"
+          docker tag my-flask-app:latest $REPOSITORY_URI:latest
           docker push $REPOSITORY_URI:latest
    
     - name: Update kubeconfig
