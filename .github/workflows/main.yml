@@ -61,4 +61,5 @@ jobs:
     - name: Deploy the application
       run: |
         echo "Deploying the application to EKS"
-        kubectl apply -f deployment.yaml
+        cd ../
+        kubectl apply -f workflow.yaml
