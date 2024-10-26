@@ -31,6 +31,7 @@ jobs:
         REPOSITORY_NAME=app-flas-demo
         ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
         ECR_URL="$ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com"
+        echo $ECR_URL
 
         
     - name: Build and Push Docker Image
