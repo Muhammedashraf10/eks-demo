@@ -1,0 +1,66 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Set up kubectl
+      run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+
+    - name: Set ECR Repository URI
+      run: |
+        IMAGE_TAG=latest
+        REPOSITORY_NAME=app-flask-demo
+        ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        REGION=us-east-1
+        ECR_URL="$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com"
+        REPOSITORY_URI="$ECR_URL/$REPOSITORY_NAME"
+        echo "REPOSITORY_URI=$REPOSITORY_URI" >> $GITHUB_ENV
+
+    - name: Build and Push Docker Image
+      run: |
+        echo "Logging into ECR"
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
+
+        echo "Cloning Repository"
+        git clone https://github.com/Muhammedashraf10/pwc-demo.git
+        cd pwc-demo/flask-app
+
+        echo "Build started on `date`"
+        echo "Building the Docker image..."
+        sudo docker build -t my-flask-app .
+
+        echo "Tagging the image"
+        docker tag my-flask-app:latest 751628720493.dkr.ecr.us-east-1.amazonaws.com/app-flask-demo:latest
+
+        echo "Pushing the image"
+        docker push 751628720493.dkr.ecr.us-east-1.amazonaws.com/app-flask-demo:latest
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --name demo-cluster --region ${{ secrets.AWS_REGION }}
+
+    - name: Deploy the application
+      run: |
+        echo "Deploying the application to EKS"
+        cd kubernetes-deployment
+        kubectl apply -f deployment.yaml --validate=false
+
