@@ -56,7 +56,7 @@ jobs:
 
     - name: Update kubeconfig
       run: |
-        aws eks update-kubeconfig --name eks-demo --region ${{ secrets.AWS_REGION }}
+        aws eks update-kubeconfig --name demo-cluster --region ${{ secrets.AWS_REGION }}
 
     - name: Deploy the application
       run: |
