@@ -38,7 +38,7 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         echo "Logging into ECR"
-        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin "$ECR_URL"
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
 
         echo "Cloning Repository"
         git clone https://github.com/Muhammedashraf10/pwc-demo.git
