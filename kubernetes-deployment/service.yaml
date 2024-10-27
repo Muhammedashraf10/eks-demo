@@ -1,0 +1,10 @@
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  selector:
+    app: app-flask # deployment selector 
+  ports:
+    - protocol: TCP
+      port: 80  #This is the external port
+      targetPort: 5000 # port which the container listens to 
