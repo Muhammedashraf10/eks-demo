@@ -41,7 +41,7 @@ jobs:
         echo "Cloning Repository"
         git clone https://github.com/Muhammedashraf10/pwc-demo.git
         pwd
-        cd pwc-demo
+        cd flask-app
         echo "Build started on `date`"
         echo "Building the Docker image..."
         sudo docker build -t my-flask-app .
