@@ -1,9 +1,5 @@
 name: Deploy to EKS
 
-on:
-  pull:
-    branches:
-      - main  
 
 jobs:
   deploy:
