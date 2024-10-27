@@ -1,9 +1,8 @@
 name: Deploy to EKS
 
-on:
-  push:
+on::
     branches: 
-      - main
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -54,4 +53,7 @@ jobs:
       run: |
         echo "Deploying the application to EKS"
         cd kubernetes-deployment
-        kubectl apply -f deployment.yaml --validate=false
+        echo "Deployment in progress" 
+        kubectl apply -f deployment.yaml 
+        echo "Deployment Done, Now deploying the service"
+        kubectl apply -f service.yaml
