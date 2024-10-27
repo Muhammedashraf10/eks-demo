@@ -10,7 +10,8 @@ we will go through the details of each step but we will start listing the prereq
 
 ## Pre-requisites
 
-1- A machine contains terraform & configured to access AWS resources,  I used EC2 with ubuntu ( to install these tools please follow references link
+1- A machine contains terraform & configured to access AWS resources,  I used EC2 with ubuntu ( to install these tools please follow references link ).
+2- github cli configured on your machine.
 
 ## Repository Structore
 
@@ -37,4 +38,16 @@ A configuration for the workers of the EKS, it contains policy to assume AWSEKSW
 - *AmazonEC2ContainerRegistryReadOnly* It allows the worker nodes to list & retrieve the images from AWS ECR
 - *AWSEKSWorkerNodePolicy* already mentioned above
 
+**route-table.tf**
+A configuration for the route tables that will be attached to the subnets, we will have two route tables, one route table will be attached to private subnets and will route the internet traffic to NAT gateway, another one will be connecting the route table 
+
+Another configuration for attaching these route tables to the subnets.
+
+**provier.tf**
+this contains the region which will be used by terraform to deploy the AWS resources
+
+## Steps
+1- Login into your machine ( if you are using your own laptop then you need to configure aws credentials through AWS Config, if EC2 then you need to attach IAM role with required permissions ).
+2- clone reposiotry into your machine `https://github.com/Muhammedashraf10/pwc-demo.git`
+3- 
 
