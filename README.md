@@ -12,6 +12,8 @@ we will go through the details of each step but we will start listing the prereq
 
 1. A machine contains terraform & configured to access AWS resources,  I used EC2 with ubuntu ( to install these tools please follow references link ).
 2. github cli configured on your machine.
+3. IAM User with Access & Secret keys with least privilage access to access ECR & EKS
+4. an ECR/docker reposiotry 
 
 ## Repository Structore
 
@@ -58,6 +60,28 @@ EXPOSE 5000 # will expose port 5000 and will allow the container to listen to po
 CMD ["python", "app.py"] # this is the commands will executed after the container starts
 
 ```
+## kubernetes-deployment
+This directory contains the actual kubernetes deployment and the service used to expose this deployment externally
+
+**deployment.yaml**: used to create the deployment, it's labled with app-flask with replicas 3 and selector app-flask to group the pods with this label to the deployment and pods label is app-flask, container will use an image from ECR which built and uploaded with github workflow and exposing port 5000
+
+**service.yaml**: this configuration contains the service used to explose the deployment externally, it uses selector app-flask to select the deployment, and forward traffic from port 80 to port 5000 which the container listens to, it uses service type loadbalancer which creates a classic loadbalancer on AWS.
+
+## .github/workflows
+**main.yaml** this contains the workflow which will be used to automate the deployment of our application into the cluster, it contains these steps:
+1. Fetching the latest code from repo to workflow.
+2. Authenticating to AWS ( we have created secrets on github to store AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_REGION ) to store AWS credentials.
+3. Setting up docker and kubectl on the agent.
+4. Login into the ECR repo through aws ecr get-login-password & getting the account ID to store it into $ACCOUNT_ID
+5. Account ID and region will stored into ECR_URL
+6. Repo will be cloned throuth git clone `https://github.com/Muhammedashraf10/pwc-demo.git` then we will change directory to `flask-app` which contains our application
+7. We will build our application with `sudo docker build -t my-flask-app .`
+8. We will tag the image with this command `docker tag my-flask-app:latest $ECR_URL/$REPOSITORY_NAME:latest` to be later pushed into our ECR
+9. Now we are going to push the docker image `docker push $ECR_URL/$REPOSITORY_NAME:latest`
+10. Now we need to authneticate the github agent to interact with the EKS cluster through ` aws eks update-kubeconfig --name demo-cluster --region ${{ secrets.AWS_REGION }}` where demo-cluster is the name of cluster we used to create in terraform
+11. It's time now to deploy our application deployment and expose it through service, we will use `kubectl apply -f deployment.yaml` to deploy the application and `kubectl apply -f service.yaml` to deploy the service which used to expose the deployment externally
+12. Now the service exposed on AWS CLB which can be accessed through CLB DNS
+
 ## Steps
 1. Login into your machine ( if you are using your own laptop then you need to configure aws credentials through AWS Config, if EC2 then you need to attach IAM role with required permissions ).
 2. Clone reposiotry into your machine `https://github.com/Muhammedashraf10/pwc-demo.git`
