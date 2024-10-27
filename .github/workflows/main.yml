@@ -41,11 +41,10 @@ jobs:
         echo "Build started on `date`"
         echo "Building the Docker image..."
         sudo docker build -t my-flask-app .
-
         echo "Tagging the image"
         docker tag my-flask-app:latest $ECR_URL/$REPOSITORY_NAME:latest
         echo "Pushing the image"
-        docker push $ECR_URL/REPOSITORY_NAME:latest
+        docker push $ECR_URL/$REPOSITORY_NAME:latest
 
     - name: Update kubeconfig
       run: |
