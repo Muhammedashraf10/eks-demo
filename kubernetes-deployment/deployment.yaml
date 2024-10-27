@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app-deploy-2
+  name: flask-app-deployment
   labels:
     app: app-flask
 spec:
