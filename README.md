@@ -32,9 +32,9 @@ this will create the internet gateway for our VPC, the internet gateway will all
 for the creation of NAT gateway, The NAT gateway will be used to allow the worker nodes to access the internet since they will be deployed in private subnet
 
 **nodes.tf**
-A configuration for the workers of the EKS, it contains policy to assume AWSEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy 
-*AmazonEKS_CNI_Policy* This policy provides the Amazon VPC CNI Plugin the permissions it requires to modify the IP address configuration on your EKS worker nodes.
-*AmazonEC2ContainerRegistryReadOnly* It allows the worker nodes to list & retrieve the images from AWS ECR
-*AWSEKSWorkerNodePolicy* already mentioned above
+A configuration for the workers of the EKS, it contains policy to assume AWSEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy:
+- *AmazonEKS_CNI_Policy* This policy provides the Amazon VPC CNI Plugin the permissions it requires to modify the IP address configuration on your EKS worker nodes.
+- *AmazonEC2ContainerRegistryReadOnly* It allows the worker nodes to list & retrieve the images from AWS ECR
+- *AWSEKSWorkerNodePolicy* already mentioned above
 
 
