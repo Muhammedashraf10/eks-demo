@@ -25,19 +25,15 @@ jobs:
         chmod +x ./kubectl
         sudo mv ./kubectl /usr/local/bin/kubectl
 
-    - name: Set ECR Repository URI
+    - name: Build and Push Docker Image
       run: |
-        IMAGE_TAG=latest
         REPOSITORY_NAME=app-flask-demo
+        echo "Logging into ECR"
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
         ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
         REGION=us-east-1
         ECR_URL="$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com"
         REPOSITORY_URI="$ECR_URL/$REPOSITORY_NAME"
-
-    - name: Build and Push Docker Image
-      run: |
-        echo "Logging into ECR"
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
         echo "Cloning Repository"
         git clone https://github.com/Muhammedashraf10/pwc-demo.git
         pwd
