@@ -1,4 +1,4 @@
-# pwc-demo
+# eks-demo-cicd
 
 This repo contains a deployment for flask app onto AWS EKS cluster, The repo contains the below
 
@@ -91,5 +91,8 @@ This directory contains the actual kubernetes deployment and the service used to
 6. use `terraform init` to inialize the  terraform configuration files
 7. `terraform plan` to preview the configration before applying it, this done through creating an exection plan to review it, you can use the optional -out=FILE option to save the generated plan to a file on disk, which you can later execute by passing the file to
 8. the last is step is executing the actual code throuth `terraform apply`
+9. After cluster is ready, it's time to trigger the Github workflow, can be triggered manually on through on:push: which trigger the workflow when any modification happens.
 
-*Note: Creating K8S will take up to 20mins to be created*
+*Note1: Creating K8S will take up to 20mins to be created*
+
+
