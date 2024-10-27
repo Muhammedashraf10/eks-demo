@@ -47,7 +47,7 @@ Another configuration for attaching these route tables to the subnets.
 this contains the region which will be used by terraform to deploy the AWS resources
 
 ## Steps
--1- Login into your machine ( if you are using your own laptop then you need to configure aws credentials through AWS Config, if EC2 then you need to attach IAM role with required permissions ).
--2- clone reposiotry into your machine `https://github.com/Muhammedashraf10/pwc-demo.git`
-3- 
+1. Login into your machine ( if you are using your own laptop then you need to configure aws credentials through AWS Config, if EC2 then you need to attach IAM role with required permissions ).
+2. Clone reposiotry into your machine `https://github.com/Muhammedashraf10/pwc-demo.git`
+3. cd into `cd aws-eks`
 
