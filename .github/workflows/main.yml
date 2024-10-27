@@ -41,7 +41,8 @@ jobs:
         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.us-east-1.amazonaws.com"
 
         echo "Cloning Repository"
-        git clone https://github.com/sameh-Tawfiq/Microservices
+        git clone https://github.com/Muhammedashraf10/Microservices.git
+        pwd
         cd Microservices
 
         echo "Build started on `date`"
