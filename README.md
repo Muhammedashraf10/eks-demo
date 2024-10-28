@@ -102,8 +102,8 @@ This directory contains the actual kubernetes deployment and the service used to
 8. the last step is executing the actual code throuth `terraform apply`
 9. After cluster is ready, it's time to trigger the Github workflow, can be triggered any push by defining on:push: and select any branch that we want which trigger the workflow when any modification happens.
 
-*Note1: Creating K8S will take up to 20mins to be created*
-*Note2: Workflow logs attached as Github-actions.log*
+- *Note1: Creating K8S will take up to 20mins to be created*
+- *Note2: Workflow logs attached as Github-actions.log*
 
 ## Snapshots
 
