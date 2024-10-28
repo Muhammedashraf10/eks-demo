@@ -1,7 +1,9 @@
 name: Deploy to EKS
 
-on::
-    branches: 
+on:
+   push:
+     branches:
+       - master
       
 jobs:
   deploy:
