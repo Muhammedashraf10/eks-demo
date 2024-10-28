@@ -2,11 +2,16 @@
 
 This repo contains a deployment for flask app onto AWS EKS cluster, The repo contains the below
 
-1. Terraform code for creating Cluster
-2. Flask python app with Dockerfile to containrize the flask app
-3. Github action workflow to automate the deployment of this container into the EKS
+1. Architecture of EKS deployed on a VPC with 4 subnets
+2. Terraform code for creating Cluster
+3. Flask python app with Dockerfile to containrize the flask app
+4. Github action workflow to automate the deployment of this container into the EKS
 
 we will go through the details of each step but we will start listing the prerequisites 
+
+## Architecture
+
+![EKS-demo.drawio.png]
 
 ## Pre-requisites
 
