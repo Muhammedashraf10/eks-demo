@@ -11,7 +11,7 @@ we will go through the details of each step but we will start listing the prereq
 
 ## Architecture
 
-![https://github.com/Muhammedashraf10/pwc-demo/blob/main/EKS-demo.drawio.png]
+![EKS Architecture](https://github.com/Muhammedashraf10/pwc-demo/blob/main/EKS-demo.drawio.png)
 
 ## Pre-requisites
 
