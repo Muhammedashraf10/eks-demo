@@ -13,6 +13,10 @@ we will go through the details of each step but we will start listing the prereq
 
 ![EKS Architecture](https://github.com/Muhammedashraf10/pwc-demo/blob/main/EKS-demo.drawio.png)
 
+### Overview
+
+Terraform will create a VPC with 2 Public & 2 Private Subnets, A NAT Gateway will deployed on a public subnet and an internet gateway, It will create nodegroup with ASG with desired size 1 instance, can be upscaled to max 2 and downscaled to minmum 2, a deployment with 3 replicas will be created after cluster creation and exposed through service type CLB with HTTP  
+
 ## Pre-requisites
 
 1. A machine contains terraform & configured to access AWS resources,  I used EC2 with ubuntu ( to install these tools please follow references link ).
