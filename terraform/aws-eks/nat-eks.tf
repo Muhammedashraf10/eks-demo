@@ -1,5 +1,5 @@
 resource "aws_eip" "eks-demo-gateway-eip" {
-  vpc = true
+  domain = "vpc"
   tags = {
     "Name" = "NAT gateway"
   }
