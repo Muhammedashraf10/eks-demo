@@ -105,5 +105,10 @@ This directory contains the actual kubernetes deployment and the service used to
 *Note1: Creating K8S will take up to 20mins to be created*
 *Note2: Workflow logs attached as Github-actions.log*
 
+## Snapshots
+
+![Terraform Status](https://github.com/Muhammedashraf10/pwc-demo/blob/main/snapshots/1.png)
+
+![CLB DNS](https://github.com/Muhammedashraf10/pwc-demo/blob/main/snapshots/2.png)
 
 
