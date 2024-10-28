@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app-deployment
+  name: flask-app-deployment # deployment name 
   labels:
-    app: app-flask
+    app: app-flask # labeling 
 spec:
-  replicas: 3
+  replicas: 3 # Number of pods will be created through the deployment 
   selector:
     matchLabels:
-      app: app-flask
+      app: app-flask # Pods created will be grouped together with this label for any deployment updates will roll to this pods
   template:
     metadata:
       labels:
-        app: app-flask
+        app: app-flask # pods label
     spec:
       containers:
-      - name: flask-app
-        image: 751628720493.dkr.ecr.us-east-1.amazonaws.com/app-flask-demo:latest
+      - name: flask-app # Container name 
+        image: 751628720493.dkr.ecr.us-east-1.amazonaws.com/app-flask-demo:latest # REPO URI to fetch the image
         ports:
         - containerPort: 5000
