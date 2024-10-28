@@ -15,7 +15,7 @@ we will go through the details of each step but we will start listing the prereq
 3. IAM User with Access & Secret keys with least privilage access to access ECR & EKS
 4. an ECR/docker reposiotry 
 
-## Repository Structore
+## Repository Structure
 
 ### terraform/aws-eks 
 
@@ -90,9 +90,11 @@ This directory contains the actual kubernetes deployment and the service used to
 5. `terraform validate` to validate runs checks that verify whether a configuration is syntactically valid and internally consistent, 
 6. use `terraform init` to inialize the  terraform configuration files
 7. `terraform plan` to preview the configration before applying it, this done through creating an exection plan to review it, you can use the optional -out=FILE option to save the generated plan to a file on disk, which you can later execute by passing the file to
-8. the last is step is executing the actual code throuth `terraform apply`
-9. After cluster is ready, it's time to trigger the Github workflow, can be triggered manually on through on:push: which trigger the workflow when any modification happens.
+8. the last step is executing the actual code throuth `terraform apply`
+9. After cluster is ready, it's time to trigger the Github workflow, can be triggered any push by defining on:push: and select any branch that we want which trigger the workflow when any modification happens.
 
 *Note1: Creating K8S will take up to 20mins to be created*
+*Note2: Workflow logs attached as Github-actions.log*
+
 
 
