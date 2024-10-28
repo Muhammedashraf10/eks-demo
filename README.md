@@ -109,6 +109,7 @@ This directory contains the actual kubernetes deployment and the service used to
 
 ![Terraform Status](https://github.com/Muhammedashraf10/pwc-demo/blob/main/snapshots/1.png)
 
+
 ![CLB DNS](https://github.com/Muhammedashraf10/pwc-demo/blob/main/snapshots/2.png)
 
 
