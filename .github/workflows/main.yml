@@ -1,9 +1,6 @@
 name: Deploy to EKS
 
-on:
-   push:
-     branches:
-       - # <Replace with your Branch >
+
       
 jobs:
   deploy:
