@@ -93,8 +93,8 @@ This directory contains the actual kubernetes deployment and the service used to
 
 ## Steps
 1. Login into your machine ( if you are using your own laptop then you need to configure aws credentials through AWS Config, if EC2 then you need to attach IAM role with required permissions ).
-2. Clone reposiotry into your machine `https://github.com/Muhammedashraf10/pwc-demo.git`
-3. cd into `cd aws-eks`
+2. Clone reposiotry into your machine `git clone https://github.com/Muhammedashraf10/pwc-demo.git`
+3. cd into `cd terraform/aws-eks`
 4. use `terraform fmt` to format your terraform configuration into a style terraform format
 5. `terraform validate` to validate runs checks that verify whether a configuration is syntactically valid and internally consistent, 
 6. use `terraform init` to inialize the  terraform configuration files
