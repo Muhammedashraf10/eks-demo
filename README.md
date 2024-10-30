@@ -80,7 +80,7 @@ This directory contains the actual kubernetes deployment and the service used to
 **main.yaml** this contains the workflow which will be used to automate the deployment of our application into the cluster, it contains these steps:
 1. Fetching the latest code from repo to workflow.
 2. Authenticating to AWS ( we have created secrets on github to store AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_REGION ) to store AWS credentials.
-3. Setting up docker and kubectl on the agent.
+3. Setting up kubectl on the agent.
 4. Login into the ECR repo through aws ecr get-login-password & getting the account ID to store it into $ACCOUNT_ID
 5. Account ID and region will stored into ECR_URL
 6. Repo will be cloned throuth git clone `https://github.com/Muhammedashraf10/pwc-demo.git` then we will change directory to `flask-app` which contains our application
