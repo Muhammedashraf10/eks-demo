@@ -1,6 +1,6 @@
 # eks-demo-cicd
 
-https://calculator.aws/#/estimate?id=c7f0621080432e08031c4b50b0878aa6730de855
+
 
 This repo contains a deployment for flask app onto AWS EKS cluster, The repo contains the below
 
